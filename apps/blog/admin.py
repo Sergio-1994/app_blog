@@ -4,10 +4,15 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
 # Register your models here.
+
+#Nota: al momento de usar import/export debemos crear esta clase 
 class CategoriaResource(resources.ModelResource):
     class Meta:
         model = Categoria
 
+class AutorResource(resources.ModelResource):
+    class Meta:
+        model = Autor
 
 class CategoriaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ['nombre']
@@ -19,8 +24,9 @@ class CategoriaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         'estado'
     ]
 
-class AutorAdmin(admin.ModelAdmin):
+class AutorAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ['nombre', 'apellidos', 'correo']
+    resource_class = AutorResource
     list_display = [
         'id', 
         'nombre', 
@@ -35,5 +41,22 @@ class AutorAdmin(admin.ModelAdmin):
 
     ]
 
+class PostAdmin(admin.ModelAdmin):
+    search_fields =['titulo']
+    list_display = [
+        'id', 
+        'titulo',
+        'slug', 
+        'descripcion',
+        'contenido',
+        'imagen',
+        'estado',
+        'fecha_creacion',
+        'categoria',
+        'autor'
+    ]
+    
+
 admin.site.register(Categoria,CategoriaAdmin) 
 admin.site.register(Autor, AutorAdmin)
+admin.site.register(Post, PostAdmin)
