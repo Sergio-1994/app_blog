@@ -4,15 +4,10 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
 # Register your models here.
-
-#Nota: al momento de usar import/export debemos crear esta clase 
 class CategoriaResource(resources.ModelResource):
     class Meta:
         model = Categoria
 
-class AutorResource(resources.ModelResource):
-    class Meta:
-        model = Autor
 
 class CategoriaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ['nombre']
@@ -24,9 +19,8 @@ class CategoriaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         'estado'
     ]
 
-class AutorAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+class AutorAdmin(admin.ModelAdmin):
     search_fields = ['nombre', 'apellidos', 'correo']
-    resource_class = AutorResource
     list_display = [
         'id', 
         'nombre', 
@@ -41,6 +35,7 @@ class AutorAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     ]
 
+<<<<<<< HEAD
 class PostAdmin(admin.ModelAdmin):
     search_fields =['titulo']
     list_display = [
@@ -55,6 +50,7 @@ class PostAdmin(admin.ModelAdmin):
     ]
     
 
+=======
+>>>>>>> parent of 2354e31 (Añadido modelo Post, y modulo ckeditor)
 admin.site.register(Categoria,CategoriaAdmin) 
 admin.site.register(Autor, AutorAdmin)
-admin.site.register(Post, PostAdmin)
