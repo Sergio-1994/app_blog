@@ -48,8 +48,6 @@ class PostAdmin(admin.ModelAdmin):
         'titulo',
         'slug', 
         'descripcion',
-        'contenido',
-        'imagen',
         'estado',
         'fecha_creacion',
         'categoria',
